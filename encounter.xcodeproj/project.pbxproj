@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4AFB0D3C26491D4900D30617 /* encounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3B26491D4900D30617 /* encounterApp.swift */; };
-		4AFB0D3E26491D4900D30617 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3D26491D4900D30617 /* ContentView.swift */; };
+		4AFB0D3E26491D4900D30617 /* EncounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3D26491D4900D30617 /* EncounterView.swift */; };
 		4AFB0D4026491D4A00D30617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3F26491D4A00D30617 /* Assets.xcassets */; };
 		4AFB0D4326491D4A00D30617 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFB0D4226491D4A00D30617 /* Preview Assets.xcassets */; };
 		4AFB0D4526491D4A00D30617 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D4426491D4A00D30617 /* Persistence.swift */; };
 		4AFB0D4826491D4A00D30617 /* encounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D4626491D4A00D30617 /* encounter.xcdatamodeld */; };
 		4AFB0D5326491D4A00D30617 /* encounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D5226491D4A00D30617 /* encounterTests.swift */; };
 		4AFB0D5E26491D4A00D30617 /* encounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D5D26491D4A00D30617 /* encounterUITests.swift */; };
+		4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */; };
+		4AFB0D6E2649785400D30617 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D6D2649785400D30617 /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,7 @@
 /* Begin PBXFileReference section */
 		4AFB0D3826491D4900D30617 /* encounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = encounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFB0D3B26491D4900D30617 /* encounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = encounterApp.swift; sourceTree = "<group>"; };
-		4AFB0D3D26491D4900D30617 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4AFB0D3D26491D4900D30617 /* EncounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounterView.swift; sourceTree = "<group>"; };
 		4AFB0D3F26491D4A00D30617 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AFB0D4226491D4A00D30617 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4AFB0D4426491D4A00D30617 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		4AFB0D5926491D4A00D30617 /* encounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = encounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFB0D5D26491D4A00D30617 /* encounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = encounterUITests.swift; sourceTree = "<group>"; };
 		4AFB0D5F26491D4A00D30617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnnemyCell.swift; sourceTree = "<group>"; };
+		4AFB0D6D2649785400D30617 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				4AFB0D3B26491D4900D30617 /* encounterApp.swift */,
-				4AFB0D3D26491D4900D30617 /* ContentView.swift */,
+				4AFB0D3D26491D4900D30617 /* EncounterView.swift */,
+				4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */,
+				4AFB0D6D2649785400D30617 /* Enemy.swift */,
 				4AFB0D3F26491D4A00D30617 /* Assets.xcassets */,
 				4AFB0D4426491D4A00D30617 /* Persistence.swift */,
 				4AFB0D4926491D4A00D30617 /* Info.plist */,
@@ -267,7 +273,9 @@
 			files = (
 				4AFB0D4526491D4A00D30617 /* Persistence.swift in Sources */,
 				4AFB0D4826491D4A00D30617 /* encounter.xcdatamodeld in Sources */,
-				4AFB0D3E26491D4900D30617 /* ContentView.swift in Sources */,
+				4AFB0D6E2649785400D30617 /* Enemy.swift in Sources */,
+				4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */,
+				4AFB0D3E26491D4900D30617 /* EncounterView.swift in Sources */,
 				4AFB0D3C26491D4900D30617 /* encounterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

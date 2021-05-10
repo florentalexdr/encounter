@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct encounterApp: App {
-    let persistenceController = PersistenceController.shared
+    let persistenceController = PersistenceController.preview
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EncounterView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
