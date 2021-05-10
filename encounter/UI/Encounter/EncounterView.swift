@@ -14,7 +14,10 @@ struct EncounterView: View {
     @State private var isShowingAddEnemy = false
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Enemy.type, ascending: true)],
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Enemy.type, ascending: true),
+            NSSortDescriptor(keyPath: \Enemy.number, ascending: true)
+        ],
         animation: .default)
     
     private var enemies: FetchedResults<Enemy>
