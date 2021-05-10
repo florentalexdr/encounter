@@ -14,15 +14,16 @@ struct EncounterView: View {
     @State private var isShowingAddEnemy = false
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Enemy.type, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    
+    private var enemies: FetchedResults<Enemy>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
-                    EnnemyCell()
+                ForEach(enemies) { enemy in
+                    EnnemyCell(enemy: enemy)
                 }
                 .onDelete(perform: deleteItems)
             }.toolbar {
@@ -40,7 +41,7 @@ struct EncounterView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { enemies[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()

@@ -16,7 +16,6 @@
 		4AFB0D5326491D4A00D30617 /* encounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D5226491D4A00D30617 /* encounterTests.swift */; };
 		4AFB0D5E26491D4A00D30617 /* encounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D5D26491D4A00D30617 /* encounterUITests.swift */; };
 		4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */; };
-		4AFB0D6E2649785400D30617 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D6D2649785400D30617 /* Enemy.swift */; };
 		4AFB0D7426497F9E00D30617 /* AddEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D7326497F9E00D30617 /* AddEnemy.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		4AFB0D5D26491D4A00D30617 /* encounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = encounterUITests.swift; sourceTree = "<group>"; };
 		4AFB0D5F26491D4A00D30617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnnemyCell.swift; sourceTree = "<group>"; };
-		4AFB0D6D2649785400D30617 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		4AFB0D7326497F9E00D30617 /* AddEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEnemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,7 +153,6 @@
 		4AFB0D7026497F7D00D30617 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4AFB0D6D2649785400D30617 /* Enemy.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,7 +306,6 @@
 				4AFB0D7426497F9E00D30617 /* AddEnemy.swift in Sources */,
 				4AFB0D4526491D4A00D30617 /* Persistence.swift in Sources */,
 				4AFB0D4826491D4A00D30617 /* encounter.xcdatamodeld in Sources */,
-				4AFB0D6E2649785400D30617 /* Enemy.swift in Sources */,
 				4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */,
 				4AFB0D3E26491D4900D30617 /* EncounterView.swift in Sources */,
 				4AFB0D3C26491D4900D30617 /* encounterApp.swift in Sources */,

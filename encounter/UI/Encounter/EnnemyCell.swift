@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct EnnemyCell: View {
-    
-    
-    @State private var enemy: Enemy = Enemy(id: 5, type: "gnome", number: "1", healthPoints: 10)
+
+    @ObservedObject var enemy: Enemy
 
     var body: some View {
         HStack {
-            Text(enemy.type + " " + enemy.number)
+            Text(enemy.type! + " " + "\(enemy.number)")
             TextField("HP", value: $enemy.healthPoints, formatter: NumberFormatter())
             Stepper(
                 onIncrement: {
@@ -34,6 +33,10 @@ struct EnnemyCell: View {
 
 struct EnnemyCell_Previews: PreviewProvider {
     static var previews: some View {
-        EnnemyCell()
+        let newEnemy = Enemy()
+        newEnemy.type = "Gnome"
+        newEnemy.number = 1
+        newEnemy.healthPoints = 10
+        return EnnemyCell(enemy: newEnemy)
     }
 }
