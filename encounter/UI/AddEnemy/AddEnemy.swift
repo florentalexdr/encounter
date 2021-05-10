@@ -14,6 +14,8 @@ struct AddEnemyView: View {
 
     @Environment(\.presentationMode) var presentationMode
     
+    @Binding var isShowingAddEnemy: Bool
+
     @State private var enemyType: String = ""
     
     @State private var numberOfEnemies: Int = 0
@@ -36,7 +38,7 @@ struct AddEnemyView: View {
                             enemy.number = Int64(index)
                         }
                         PersistenceController.shared.save()
-                        presentationMode.wrappedValue.dismiss()
+                        isShowingAddEnemy.toggle()
                     }
                 }
             }

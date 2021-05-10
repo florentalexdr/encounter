@@ -11,7 +11,7 @@ import CoreData
 struct EncounterView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @State private var isShowingAddEnemy = false
+    @State var isShowingAddEnemy = false
 
     @FetchRequest(
         sortDescriptors: [
@@ -33,11 +33,11 @@ struct EncounterView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
                         isShowingAddEnemy.toggle()
-                    }.sheet(isPresented: $isShowingAddEnemy, content: {
-                        AddEnemyView()
-                    })
+                    }
                 }
-            }
+            }.sheet(isPresented: $isShowingAddEnemy, content: {
+                AddEnemyView(isShowingAddEnemy: $isShowingAddEnemy)
+            })
         }
     }
 
