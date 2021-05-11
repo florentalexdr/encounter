@@ -37,7 +37,7 @@ struct EncounterView: View {
                 }
             }.sheet(isPresented: $isShowingAddEnemy, content: {
                 AddEnemyView(isShowingAddEnemy: $isShowingAddEnemy)
-            })
+            }).navigationTitle(NSLocalizedString("Encounter", comment: ""))
         }
     }
 
