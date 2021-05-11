@@ -82,6 +82,7 @@ struct AddFighterView: View {
     
     // MARK: - UI
     
+    
     var body: some View {
         NavigationView {
             VStack {

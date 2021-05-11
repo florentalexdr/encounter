@@ -13,12 +13,19 @@ struct EnnemyCell: View {
     
     var body: some View {
         HStack {
+            Rectangle()
+                .frame(width: 2)
+                .foregroundColor(.red)
+            
             Text((enemy.type ?? "") + " " + "\(enemy.number)")
-                .foregroundColor(.primary)
+                    .foregroundColor(.primary)
+            
             Text("(Init: \(enemy.initiative))")
                 .foregroundColor(.secondary)
+            
             TextField("0", value: $enemy.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
                 .multilineTextAlignment(.trailing)
+            
             Text("/ \(enemy.healthPoints) HP")
         }
     }

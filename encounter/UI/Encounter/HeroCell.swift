@@ -13,13 +13,22 @@ struct HeroCell: View {
         
     var body: some View {
         HStack {
+            
+            Rectangle()
+                .frame(width: 2)
+                .foregroundColor(.green)
+            
             Text(hero.name ?? "")
                 .foregroundColor(.primary)
+            
             Text("(Init: \(hero.initiative))")
                 .foregroundColor(.secondary)
+            
             TextField("0", value: $hero.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
                 .multilineTextAlignment(.trailing)
+            
             Text("/ \(hero.healthPoints) HP")
+            
         }
     }
 }
