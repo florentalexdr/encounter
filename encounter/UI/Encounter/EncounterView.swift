@@ -43,13 +43,20 @@ struct EncounterView: View {
                 .onDelete(perform: deleteItems)
             }.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add") {
+                    Button(action: {
                         isShowingAddEnemy.toggle()
+                    }) {
+                        AddFighterButton()
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Clear") {
+                    Button(action: {
                         showingClearAlert.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Clear")
+                        }
                     }.disabled(fighters.isEmpty)
                 }
             }.sheet(isPresented: $isShowingAddEnemy, content: {

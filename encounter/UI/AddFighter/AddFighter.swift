@@ -102,10 +102,10 @@ struct AddFighterView: View {
                             TextField("Ogion", text: $name)
                         }
                         Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
-                            TextField("20", text: initiativeProxy)
+                            TextField("17", text: initiativeProxy)
                         }
                         Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
-                            TextField("20", text: healthPointsProxy)
+                            TextField("100", text: healthPointsProxy)
                         }
                     } else {
                         Section(header: Text(NSLocalizedString("Enemy type", comment: ""))) {
@@ -115,17 +115,17 @@ struct AddFighterView: View {
                             TextField("5", text: numberOfEnemiesProxy)
                         }
                         Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
-                            TextField("20", text: initiativeProxy)
+                            TextField("17", text: initiativeProxy)
                         }
                         Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
-                            TextField("20", text: healthPointsProxy)
+                            TextField("100", text: healthPointsProxy)
                         }
                     }
                 }}.navigationTitle(
                     NSLocalizedString("Add fighter", comment: "")
                 ).toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(NSLocalizedString("Add", comment: "")) {
+                        Button(action: {
                             
                             guard saveToDB() else {
                                 showingAlert = true
@@ -133,6 +133,8 @@ struct AddFighterView: View {
                             }
                             PersistenceController.shared.save()
                             isShowingAddFighter.toggle()
+                        }) {
+                            AddFighterButton()
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
