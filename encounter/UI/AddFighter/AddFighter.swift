@@ -19,7 +19,7 @@ struct AddFighterView: View {
     // MARK: - Private Properties
     
     @State private var name: String = ""
-
+    
     @State private var enemyType: String = ""
     
     @State private var numberOfEnemies: Int?
@@ -84,67 +84,69 @@ struct AddFighterView: View {
     
     var body: some View {
         NavigationView {
-            Form {
+            VStack {
                 Picker(
                     selection: $isHero,
                     label:
                         Text("Picker Name")
                     , content: {
-                        Text("Hero").tag(true)
-                        Text("Enemy").tag(false)
+                        Text("🧙‍♀️ Hero").tag(true)
+                        Text("🧟‍♀️ Enemy").tag(false)
                     }
                 )
                 .pickerStyle(SegmentedPickerStyle())
-                if isHero {
-                    Section(header: Text(NSLocalizedString("Name", comment: ""))) {
-                        TextField("Ogion", text: $name)
-                    }
-                    Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
-                        TextField("20", text: initiativeProxy)
-                    }
-                    Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
-                        TextField("20", text: healthPointsProxy)
-                    }
-                } else {
-                    Section(header: Text(NSLocalizedString("Enemy type", comment: ""))) {
-                        TextField("Gnome", text: $enemyType)
-                    }
-                    Section(header: Text(NSLocalizedString("Number of enemies", comment: ""))) {
-                        TextField("5", text: numberOfEnemiesProxy)
-                    }
-                    Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
-                        TextField("20", text: initiativeProxy)
-                    }
-                    Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
-                        TextField("20", text: healthPointsProxy)
-                    }
-                }
-            }.navigationTitle(
-                NSLocalizedString("Add fighter", comment: "")
-            ).toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(NSLocalizedString("Add", comment: "")) {
-                        
-                        guard saveToDB() else {
-                            showingAlert = true
-                            return
+                .padding()
+                Form {
+                    if isHero {
+                        Section(header: Text(NSLocalizedString("Name", comment: ""))) {
+                            TextField("Ogion", text: $name)
                         }
-                        PersistenceController.shared.save()
-                        isShowingAddFighter.toggle()
+                        Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
+                            TextField("20", text: initiativeProxy)
+                        }
+                        Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
+                            TextField("20", text: healthPointsProxy)
+                        }
+                    } else {
+                        Section(header: Text(NSLocalizedString("Enemy type", comment: ""))) {
+                            TextField("Gnome", text: $enemyType)
+                        }
+                        Section(header: Text(NSLocalizedString("Number of enemies", comment: ""))) {
+                            TextField("5", text: numberOfEnemiesProxy)
+                        }
+                        Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
+                            TextField("20", text: initiativeProxy)
+                        }
+                        Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
+                            TextField("20", text: healthPointsProxy)
+                        }
                     }
-                }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(NSLocalizedString("Cancel", comment: "")) {
-                        isShowingAddFighter.toggle()
+                }}.navigationTitle(
+                    NSLocalizedString("Add fighter", comment: "")
+                ).toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(NSLocalizedString("Add", comment: "")) {
+                            
+                            guard saveToDB() else {
+                                showingAlert = true
+                                return
+                            }
+                            PersistenceController.shared.save()
+                            isShowingAddFighter.toggle()
+                        }
                     }
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(NSLocalizedString("Cancel", comment: "")) {
+                            isShowingAddFighter.toggle()
+                        }
+                    }
+                }.alert(isPresented: $showingAlert) {
+                    Alert(
+                        title: Text(NSLocalizedString("Error", comment: "")),
+                        message: Text(NSLocalizedString("Fill all fields before adding.", comment: "")),
+                        dismissButton: .default(Text(NSLocalizedString("Got it!", comment: "")))
+                    )
                 }
-            }.alert(isPresented: $showingAlert) {
-                Alert(
-                    title: Text(NSLocalizedString("Error", comment: "")),
-                    message: Text(NSLocalizedString("Fill all fields before adding.", comment: "")),
-                    dismissButton: .default(Text(NSLocalizedString("Got it!", comment: "")))
-                )
-            }
         }
         
     }

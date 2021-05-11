@@ -21,7 +21,7 @@ struct EncounterView: View {
         animation: .default)
     
     private var fighters: FetchedResults<Fighter>
-
+    
     var body: some View {
         NavigationView {
             List {
