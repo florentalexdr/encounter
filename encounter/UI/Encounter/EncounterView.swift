@@ -15,18 +15,22 @@ struct EncounterView: View {
 
     @FetchRequest(
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Enemy.type, ascending: true),
+            NSSortDescriptor(keyPath: \Fighter.initiative, ascending: false),
             NSSortDescriptor(keyPath: \Enemy.number, ascending: true)
         ],
         animation: .default)
     
-    private var enemies: FetchedResults<Enemy>
+    private var fighters: FetchedResults<Fighter>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(enemies) { enemy in
-                    EnnemyCell(enemy: enemy)
+                ForEach(fighters) { fighter in
+                    if let enemy = fighter as? Enemy {
+                        EnnemyCell(enemy: enemy)
+                    } else if let hero = fighter as? Hero {
+                        HeroCell(hero: hero)
+                    }
                 }
                 .onDelete(perform: deleteItems)
             }.toolbar {
@@ -44,7 +48,7 @@ struct EncounterView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { enemies[$0] }.forEach(viewContext.delete)
+            offsets.map { fighters[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
