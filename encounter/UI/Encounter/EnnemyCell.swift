@@ -13,7 +13,7 @@ struct EnnemyCell: View {
 
     var body: some View {
         HStack {
-            Text(enemy.type! + " " + "\(enemy.number)")
+            Text(enemy.type ?? "" + " " + "\(enemy.number)")
             TextField("HP", value: $enemy.healthPoints, formatter: NumberFormatter())
             Stepper(
                 onIncrement: {
