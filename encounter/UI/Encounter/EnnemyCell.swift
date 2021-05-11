@@ -10,23 +10,16 @@ import SwiftUI
 struct EnnemyCell: View {
 
     @ObservedObject var enemy: Enemy
-
+    
     var body: some View {
         HStack {
-            Text(enemy.type ?? "" + " " + "\(enemy.number)")
-            TextField("HP", value: $enemy.healthPoints, formatter: NumberFormatter())
-            Stepper(
-                onIncrement: {
-                    enemy.healthPoints += 1
-                },
-                onDecrement: {
-                    enemy.healthPoints -= 1
-                }
-                ,
-                label: {
-                    
-                }
-            )
+            Text((enemy.type ?? "") + " " + "\(enemy.number)")
+                .foregroundColor(.primary)
+            Text("(Init: \(enemy.initiative))")
+                .foregroundColor(.secondary)
+            TextField("0", value: $enemy.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                .multilineTextAlignment(.trailing)
+            Text("/ \(enemy.healthPoints) HP")
         }
     }
 }

@@ -68,7 +68,7 @@ struct EncounterView: View {
                     primaryButton: .destructive(Text(NSLocalizedString("Delete", comment: "")), action: clearList),
                     secondaryButton: .default(Text(NSLocalizedString("Cancel", comment: "")))
                 )
-            }.navigationTitle(NSLocalizedString("Encounter", comment: ""))
+            }.navigationTitle(NSLocalizedString("Encounter ⚔️", comment: ""))
         }
     }
     

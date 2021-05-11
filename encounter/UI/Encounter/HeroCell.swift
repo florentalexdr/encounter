@@ -8,24 +8,18 @@
 import SwiftUI
 
 struct HeroCell: View {
-    @ObservedObject var hero: Hero
     
+    @ObservedObject var hero: Hero
+        
     var body: some View {
         HStack {
             Text(hero.name ?? "")
-            TextField("HP", value: $hero.healthPoints, formatter: NumberFormatter())
-            Stepper(
-                onIncrement: {
-                    hero.healthPoints += 1
-                },
-                onDecrement: {
-                    hero.healthPoints -= 1
-                }
-                ,
-                label: {
-                    
-                }
-            )
+                .foregroundColor(.primary)
+            Text("(Init: \(hero.initiative))")
+                .foregroundColor(.secondary)
+            TextField("0", value: $hero.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                .multilineTextAlignment(.trailing)
+            Text("/ \(hero.healthPoints) HP")
         }
     }
 }

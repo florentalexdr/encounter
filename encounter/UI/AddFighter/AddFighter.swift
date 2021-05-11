@@ -131,7 +131,6 @@ struct AddFighterView: View {
                                 showingAlert = true
                                 return
                             }
-                            PersistenceController.shared.save()
                             isShowingAddFighter.toggle()
                         }) {
                             AddFighterButton()
@@ -156,11 +155,16 @@ struct AddFighterView: View {
     // MARK : - Private Methods
     
     private func saveToDB() -> Bool {
+        
+        var result: Bool = false 
         if isHero {
-            return addHeroToDB()
+            result = addHeroToDB()
+        } else {
+            result = addEnemiesToDB()
         }
         
-        return addEnemiesToDB()
+        PersistenceController.shared.save()
+        return result
     }
     
     private func addHeroToDB() -> Bool {
@@ -173,6 +177,7 @@ struct AddFighterView: View {
         let hero = Hero(context: managedObjectContext)
         hero.name = name
         hero.healthPoints = Int64(healthPoints)
+        hero.currentHealthPoints = Int64(healthPoints)
         hero.initiative = Int64(initiative)
         
         return true
@@ -191,6 +196,7 @@ struct AddFighterView: View {
             enemy.type = enemyType
             enemy.initiative = Int64(initiative)
             enemy.healthPoints = Int64(healthPoints)
+            enemy.currentHealthPoints = Int64(healthPoints)
             enemy.number = Int64(index)
         }
         
