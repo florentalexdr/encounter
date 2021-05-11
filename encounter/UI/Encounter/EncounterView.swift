@@ -36,7 +36,7 @@ struct EncounterView: View {
                     }
                 }
             }.sheet(isPresented: $isShowingAddEnemy, content: {
-                AddEnemyView(isShowingAddEnemy: $isShowingAddEnemy)
+                AddFighterView(isShowingAddFighter: $isShowingAddEnemy)
             }).navigationTitle(NSLocalizedString("Encounter", comment: ""))
         }
     }

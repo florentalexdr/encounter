@@ -3,10 +3,17 @@
     <entity name="Enemy" representedClassName="Enemy" syncable="YES" codeGenerationType="class">
         <attribute name="currentHealthPoints" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="healthPoints" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="initiative" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="number" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
     </entity>
+    <entity name="Hero" representedClassName="Hero" syncable="YES" codeGenerationType="class">
+        <attribute name="healthPoints" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="initiative" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
-        <element name="Enemy" positionX="-54" positionY="0" width="128" height="89"/>
+        <element name="Enemy" positionX="-54" positionY="0" width="128" height="104"/>
+        <element name="Hero" positionX="-54" positionY="27" width="128" height="74"/>
     </elements>
 </model>
