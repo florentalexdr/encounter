@@ -14,6 +14,8 @@ struct EncounterView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    @Environment(\.presentationMode) var presentation
+
     @State var isShowingAddEnemy = false
     
     // MARK: - Private properties
