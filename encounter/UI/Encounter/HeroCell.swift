@@ -9,13 +9,14 @@ import SwiftUI
 
 struct HeroCell: View {
     
-    @ObservedObject var hero: Hero
+    @ObservedObject var hero: Fighter
         
     var body: some View {
         HStack {
         
             HealthBar(barColor: .green, maximumHealthPoints: Int(hero.healthPoints), currentHealthPoints: Int(hero.currentHealthPoints))
                 .frame(width: 3)
+                .cornerRadius(2)
 
             Text(hero.name ?? "")
                 .foregroundColor(.primary)
@@ -34,7 +35,7 @@ struct HeroCell: View {
 
 struct HeroCell_Previews: PreviewProvider {
     static var previews: some View {
-        let hero = Hero()
+        let hero = Fighter()
         hero.name = "Ogion"
         hero.healthPoints = 10
         return HeroCell(hero: hero)

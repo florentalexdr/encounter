@@ -14,9 +14,9 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for index in 0..<10 {
-            let newEnemy = Enemy(context: viewContext)
-            newEnemy.type = "Gnome"
-            newEnemy.number = Int64(index)
+            let newEnemy = Fighter(context: viewContext)
+            newEnemy.name = "Gnome"
+            newEnemy.index = Int64(index)
             newEnemy.healthPoints = 10
         }
         do {
@@ -67,17 +67,17 @@ struct PersistenceController {
         }
     }
     
-    func lastNumberForEnemy(type: String) -> Int {
+    func lastIndexForEnemy(type: String) -> Int {
         
-        let fetchRequest = NSFetchRequest<Enemy>(entityName: "Enemy")
-        fetchRequest.predicate = NSPredicate(format: "ANY type LIKE[c] %@", type)
+        let fetchRequest = NSFetchRequest<Fighter>(entityName: "Fighter")
+        fetchRequest.predicate = NSPredicate(format: "ANY name BEGINSWITH[c] %@", type)
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Enemy.number, ascending: false)
+            NSSortDescriptor(keyPath: \Fighter.index, ascending: false)
         ]
         
         do {
             let enemies = try container.viewContext.fetch(fetchRequest) 
-            return Int(enemies.first?.number ?? 0)
+            return Int(enemies.first?.index ?? 0)
         } catch let error {
             print("Couldn't fetch enemies of type \(error)")
             return 0

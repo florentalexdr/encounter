@@ -9,15 +9,16 @@ import SwiftUI
 
 struct EnnemyCell: View {
 
-    @ObservedObject var enemy: Enemy
+    @ObservedObject var enemy: Fighter
     
     var body: some View {
         HStack {
             HealthBar(barColor: .red, maximumHealthPoints: Int(enemy.healthPoints), currentHealthPoints: Int(enemy.currentHealthPoints))
                 .frame(width: 3)
-            
-            Text((enemy.type ?? "") + " " + "\(enemy.number)")
-                    .foregroundColor(.primary)
+                .cornerRadius(2)
+
+            Text(enemy.name ?? "")
+                .foregroundColor(.primary)
             
             Text("(Init: \(enemy.initiative))")
                 .foregroundColor(.secondary)
@@ -32,9 +33,8 @@ struct EnnemyCell: View {
 
 struct EnnemyCell_Previews: PreviewProvider {
     static var previews: some View {
-        let newEnemy = Enemy()
-        newEnemy.type = "Gnome"
-        newEnemy.number = 1
+        let newEnemy = Fighter()
+        newEnemy.name = "Gnome"
         newEnemy.healthPoints = 10
         return EnnemyCell(enemy: newEnemy)
     }

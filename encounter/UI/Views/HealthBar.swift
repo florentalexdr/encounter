@@ -23,7 +23,6 @@ struct HealthBar: View {
                 Rectangle()
                     .frame(width: 3)
                     .foregroundColor(barColor)
-                    .cornerRadius(2)
                 Rectangle()
                     .frame(
                         width: 3,
@@ -31,7 +30,6 @@ struct HealthBar: View {
                     )
                     .foregroundColor(.black)
                     .opacity(0.4)
-                    .cornerRadius(2)
             }
         }
     }

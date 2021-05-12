@@ -175,11 +175,13 @@ struct AddFighterView: View {
             return false
         }
         
-        let hero = Hero(context: managedObjectContext)
+        let hero = Fighter(context: managedObjectContext)
+        hero.isHero = true
         hero.name = name
         hero.healthPoints = Int64(healthPoints)
         hero.currentHealthPoints = Int64(healthPoints)
         hero.initiative = Int64(initiative)
+        hero.index = 0
         
         return true
     }
@@ -192,16 +194,16 @@ struct AddFighterView: View {
             return false
         }
                         
-        let startIndex = PersistenceController.shared.lastNumberForEnemy(type: enemyType) + 1
+        let startIndex = PersistenceController.shared.lastIndexForEnemy(type: enemyType) + 1
         let endIndex = startIndex + numberOfEnemies - 1
         for index in startIndex...endIndex {
-            let enemy = Enemy(context: managedObjectContext)
-            enemy.type = enemyType
+            let enemy = Fighter(context: managedObjectContext)
             enemy.initiative = Int64(initiative)
             enemy.healthPoints = Int64(healthPoints)
             enemy.currentHealthPoints = Int64(healthPoints)
-            enemy.number = Int64(index)
+            enemy.index = Int64(index)
             enemy.name = enemyType + " " + "\(index)"
+            enemy.isHero = false
         }
         
         return true

@@ -25,6 +25,7 @@ struct EncounterView: View {
     @FetchRequest(
         sortDescriptors: [
             NSSortDescriptor(keyPath: \Fighter.initiative, ascending: false),
+            NSSortDescriptor(keyPath: \Fighter.index, ascending: true),
             NSSortDescriptor(keyPath: \Fighter.name, ascending: true),
         ],
         animation: .default)
@@ -36,10 +37,10 @@ struct EncounterView: View {
         NavigationView {
             List {
                 ForEach(fighters) { fighter in
-                    if let enemy = fighter as? Enemy {
-                        EnnemyCell(enemy: enemy)
-                    } else if let hero = fighter as? Hero {
-                        HeroCell(hero: hero)
+                    if !fighter.isHero {
+                        EnnemyCell(enemy: fighter)
+                    } else {
+                        HeroCell(hero: fighter)
                     }
                 }
                 .onDelete(perform: deleteItems)
