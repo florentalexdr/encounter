@@ -13,11 +13,10 @@ struct HeroCell: View {
         
     var body: some View {
         HStack {
-            
-            Rectangle()
-                .frame(width: 2)
-                .foregroundColor(.green)
-            
+        
+            HealthBar(barColor: .green, maximumHealthPoints: Int(hero.healthPoints), currentHealthPoints: Int(hero.currentHealthPoints))
+                .frame(width: 3)
+
             Text(hero.name ?? "")
                 .foregroundColor(.primary)
             

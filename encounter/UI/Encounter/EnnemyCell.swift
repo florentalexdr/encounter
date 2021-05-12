@@ -13,9 +13,8 @@ struct EnnemyCell: View {
     
     var body: some View {
         HStack {
-            Rectangle()
-                .frame(width: 2)
-                .foregroundColor(.red)
+            HealthBar(barColor: .red, maximumHealthPoints: Int(enemy.healthPoints), currentHealthPoints: Int(enemy.currentHealthPoints))
+                .frame(width: 3)
             
             Text((enemy.type ?? "") + " " + "\(enemy.number)")
                     .foregroundColor(.primary)

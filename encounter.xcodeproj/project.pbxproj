@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4AE92E5E264A9F9200561AC6 /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE92E5D264A9F9200561AC6 /* HeroCell.swift */; };
 		4AE92E61264AB18F00561AC6 /* AddFighterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE92E60264AB18F00561AC6 /* AddFighterButton.swift */; };
+		4AEB6863264BD66600CBE950 /* HealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB6862264BD66600CBE950 /* HealthBar.swift */; };
 		4AFB0D3C26491D4900D30617 /* encounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3B26491D4900D30617 /* encounterApp.swift */; };
 		4AFB0D3E26491D4900D30617 /* EncounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3D26491D4900D30617 /* EncounterView.swift */; };
 		4AFB0D4026491D4A00D30617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3F26491D4A00D30617 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		4AE92E5D264A9F9200561AC6 /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
 		4AE92E60264AB18F00561AC6 /* AddFighterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFighterButton.swift; sourceTree = "<group>"; };
+		4AEB6862264BD66600CBE950 /* HealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBar.swift; sourceTree = "<group>"; };
 		4AFB0D3826491D4900D30617 /* encounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = encounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFB0D3B26491D4900D30617 /* encounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = encounterApp.swift; sourceTree = "<group>"; };
 		4AFB0D3D26491D4900D30617 /* EncounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounterView.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				4AE92E60264AB18F00561AC6 /* AddFighterButton.swift */,
+				4AEB6862264BD66600CBE950 /* HealthBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AFB0D7426497F9E00D30617 /* AddFighter.swift in Sources */,
+				4AEB6863264BD66600CBE950 /* HealthBar.swift in Sources */,
 				4AFB0D4526491D4A00D30617 /* Persistence.swift in Sources */,
 				4AFB0D4826491D4A00D30617 /* encounter.xcdatamodeld in Sources */,
 				4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */,
