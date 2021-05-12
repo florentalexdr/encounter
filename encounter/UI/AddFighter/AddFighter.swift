@@ -199,6 +199,7 @@ struct AddFighterView: View {
             enemy.healthPoints = Int64(healthPoints)
             enemy.currentHealthPoints = Int64(healthPoints)
             enemy.number = Int64(index)
+            enemy.name = enemyType + " " + "\(index)"
         }
         
         return true

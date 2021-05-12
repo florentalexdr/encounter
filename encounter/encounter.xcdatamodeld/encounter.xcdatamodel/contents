@@ -8,13 +8,12 @@
         <attribute name="currentHealthPoints" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="healthPoints" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="initiative" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
-    <entity name="Hero" representedClassName="Hero" parentEntity="Fighter" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Hero" representedClassName="Hero" parentEntity="Fighter" syncable="YES" codeGenerationType="class"/>
     <elements>
         <element name="Enemy" positionX="-54" positionY="0" width="128" height="59"/>
-        <element name="Hero" positionX="-54" positionY="27" width="128" height="44"/>
-        <element name="Fighter" positionX="-45" positionY="45" width="128" height="74"/>
+        <element name="Fighter" positionX="-45" positionY="45" width="128" height="89"/>
+        <element name="Hero" positionX="-54" positionY="27" width="128" height="29"/>
     </elements>
 </model>

@@ -25,7 +25,7 @@ struct EncounterView: View {
     @FetchRequest(
         sortDescriptors: [
             NSSortDescriptor(keyPath: \Fighter.initiative, ascending: false),
-            NSSortDescriptor(keyPath: \Enemy.number, ascending: true)
+            NSSortDescriptor(keyPath: \Fighter.name, ascending: true),
         ],
         animation: .default)
     private var fighters: FetchedResults<Fighter>

@@ -61,8 +61,8 @@ struct PersistenceController {
         if context.hasChanges {
             do {
                 try context.save()
-            } catch {
-                // Show some error here
+            } catch let error {
+                print("failed to save in DB \(error)")
             }
         }
     }
