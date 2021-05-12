@@ -191,8 +191,10 @@ struct AddFighterView: View {
               let healthPoints = self.healthPoints else {
             return false
         }
-        
-        for index in 1...numberOfEnemies {
+                        
+        let startIndex = PersistenceController.shared.lastNumberForEnemy(type: enemyType) + 1
+        let endIndex = startIndex + numberOfEnemies - 1
+        for index in startIndex...endIndex {
             let enemy = Enemy(context: managedObjectContext)
             enemy.type = enemyType
             enemy.initiative = Int64(initiative)

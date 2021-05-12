@@ -66,4 +66,24 @@ struct PersistenceController {
             }
         }
     }
+    
+    func lastNumberForEnemy(type: String) -> Int {
+        
+        let fetchRequest = NSFetchRequest<Enemy>(entityName: "Enemy")
+        fetchRequest.predicate = NSPredicate(format: "ANY type LIKE[c] %@", type)
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Enemy.number, ascending: false)
+        ]
+        
+        do {
+            let enemies = try container.viewContext.fetch(fetchRequest) 
+            return Int(enemies.first?.number ?? 0)
+        } catch let error {
+            print("Couldn't fetch enemies of type \(error)")
+            return 0
+        }
+        
+    }
+    
+    
 }
