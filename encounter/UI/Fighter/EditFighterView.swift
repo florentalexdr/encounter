@@ -65,7 +65,7 @@ struct EditFighterView: View {
                 Section(header: Text(NSLocalizedString("States", comment: ""))) {
                     List {
                         ForEach(fighter.fighterStatesArray) { state in
-                            Text(FighterStateType(rawValue: state.stateType)?.localizedString ?? "")
+                            FighterStateView(fighterState: state)
                         }
                         .onDelete(perform: deleteItems)
                     }

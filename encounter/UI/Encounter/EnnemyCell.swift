@@ -12,21 +12,30 @@ struct EnnemyCell: View {
     @ObservedObject var enemy: Fighter
     
     var body: some View {
-        HStack {
-            HealthBar(barColor: .red, maximumHealthPoints: Int(enemy.healthPoints), currentHealthPoints: Int(enemy.currentHealthPoints))
-                .frame(width: 3)
-                .cornerRadius(2)
-
-            Text(enemy.name ?? "")
-                .foregroundColor(.primary)
-            
-            Text("(Init: \(enemy.initiative))")
-                .foregroundColor(.secondary)
-            
-            TextField("0", value: $enemy.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
-                .multilineTextAlignment(.trailing)
-            
-            Text("/ \(enemy.healthPoints) HP")
+        VStack {
+            HStack {
+                HealthBar(barColor: .red, maximumHealthPoints: Int(enemy.healthPoints), currentHealthPoints: Int(enemy.currentHealthPoints))
+                    .frame(width: 3)
+                    .cornerRadius(2)
+                
+                Text(enemy.name ?? "")
+                    .foregroundColor(.primary)
+                
+                Text("(Init: \(enemy.initiative))")
+                    .foregroundColor(.secondary)
+                
+                TextField("0", value: $enemy.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                    .multilineTextAlignment(.trailing)
+                
+                Text("/ \(enemy.healthPoints) HP")
+            }
+            ForEach(enemy.fighterStatesArray) { state in
+                HStack {
+                    Spacer()
+                        .frame(width: 11)
+                    FighterStateView(fighterState: state)
+                }
+            }
         }
     }
 }
