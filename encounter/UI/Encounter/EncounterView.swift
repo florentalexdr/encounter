@@ -53,7 +53,7 @@ struct EncounterView: View {
                     Button(action: {
                         isShowingAddEnemy.toggle()
                     }) {
-                        AddFighterButton()
+                        AddButton()
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {

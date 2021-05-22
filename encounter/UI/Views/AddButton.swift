@@ -7,17 +7,20 @@
 
 import SwiftUI
 
-struct AddFighterButton: View {
+struct AddButton: View {
+    
+    var title: String = NSLocalizedString("Add", comment: "")
+    
     var body: some View {
         HStack {
             Image(systemName: "plus")
-            Text(NSLocalizedString("Add", comment: ""))
+            Text(title)
         }
     }
 }
 
 struct AddFighterButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddFighterButton()
+        AddButton()
     }
 }

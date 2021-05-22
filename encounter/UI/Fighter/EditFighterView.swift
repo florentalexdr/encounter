@@ -26,33 +26,11 @@ struct EditFighterView: View {
 
     @State var isShowingAddState = false
 
-    @ObservedObject var fighter: Fighter {
-        didSet {
-            healthPoints = Int(fighter.currentHealthPoints)
-        }
-    }
+    @ObservedObject var fighter: Fighter
     
     // MARK: - Private Properties
     
     @Environment(\.managedObjectContext) private var viewContext
-
-    @State private var healthPoints: Int?
-    
-    private var healthPointsProxy: Binding<String> {
-        Binding<String>(
-            get: {
-                guard let numberOfEnemies = self.healthPoints else {
-                    return ""
-                }
-                return  String(format: "%d", Int(numberOfEnemies))
-            },
-            set: {
-                if let value = NumberFormatter().number(from: $0) {
-                    healthPoints = value.intValue
-                }
-            }
-        )
-    }
     
     // MARK: - UI
     
@@ -60,7 +38,7 @@ struct EditFighterView: View {
         VStack {
             Form {
                 Section(header: Text(NSLocalizedString("Current HP", comment: ""))) {
-                    TextField("100", text: healthPointsProxy)
+                    TextField("100", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
                 }
                 Section(header: Text(NSLocalizedString("States", comment: ""))) {
                     List {
@@ -77,7 +55,7 @@ struct EditFighterView: View {
                 Button(action: {
                     isShowingAddState.toggle()
                 }) {
-                    AddFighterButton()
+                    AddButton(title: NSLocalizedString("Add State", comment: ""))
                 }
             }
         }

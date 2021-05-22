@@ -134,7 +134,7 @@ struct AddFighterView: View {
                             }
                             isShowingAddFighter.toggle()
                         }) {
-                            AddFighterButton()
+                            AddButton()
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {

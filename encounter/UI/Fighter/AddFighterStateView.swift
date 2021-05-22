@@ -108,7 +108,7 @@ struct AddFighterStateView: View {
                             }
                             isShowingAddFighterState.toggle()
                         }) {
-                            AddFighterButton()
+                            AddButton(title: NSLocalizedString("Add State", comment: ""))
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
