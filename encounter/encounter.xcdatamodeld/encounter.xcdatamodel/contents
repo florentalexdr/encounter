@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Encounter" representedClassName="Encounter" syncable="YES" codeGenerationType="class">
+        <attribute name="turns" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="fighters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Fighter" inverseName="encounter" inverseEntity="Fighter"/>
+    </entity>
     <entity name="Fighter" representedClassName="Fighter" syncable="YES" codeGenerationType="class">
         <attribute name="currentHealthPoints" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="healthPoints" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -7,8 +11,17 @@
         <attribute name="initiative" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isHero" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="encounter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Encounter" inverseName="fighters" inverseEntity="Encounter"/>
+        <relationship name="states" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FighterState" inverseName="fighter" inverseEntity="FighterState"/>
+    </entity>
+    <entity name="FighterState" representedClassName="FighterState" syncable="YES" codeGenerationType="class">
+        <attribute name="stateType" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="turnsLeft" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="fighter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fighter" inverseName="states" inverseEntity="Fighter"/>
     </entity>
     <elements>
-        <element name="Fighter" positionX="-45" positionY="45" width="128" height="119"/>
+        <element name="Fighter" positionX="-45" positionY="45" width="128" height="149"/>
+        <element name="FighterState" positionX="-45" positionY="90" width="128" height="74"/>
+        <element name="Encounter" positionX="-27" positionY="117" width="128" height="59"/>
     </elements>
 </model>

@@ -18,6 +18,10 @@ struct EncounterView: View {
 
     @State var isShowingAddEnemy = false
     
+    @State var isShowingAddFighterState = false
+    
+    @State var selectedFighter: Fighter?
+    
     // MARK: - Private properties
         
     @State private var showingClearAlert = false
@@ -39,8 +43,16 @@ struct EncounterView: View {
                 ForEach(fighters) { fighter in
                     if !fighter.isHero {
                         EnnemyCell(enemy: fighter)
+                        .onTapGesture {
+                            selectedFighter = fighter
+                            isShowingAddFighterState.toggle()
+                        }
                     } else {
                         HeroCell(hero: fighter)
+                        .onTapGesture {
+                            selectedFighter = fighter
+                            isShowingAddFighterState.toggle()
+                        }
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -64,6 +76,8 @@ struct EncounterView: View {
                 }
             }.sheet(isPresented: $isShowingAddEnemy, content: {
                 AddFighterView(isShowingAddFighter: $isShowingAddEnemy)
+            }).sheet(isPresented: $isShowingAddFighterState, content: {
+                AddFighterStateView(isShowingAddFighterState: $isShowingAddFighterState, fighter: $selectedFighter)
             }).alert(isPresented: $showingClearAlert) {
                 Alert(
                     title: Text(NSLocalizedString("Warning", comment: "")),
