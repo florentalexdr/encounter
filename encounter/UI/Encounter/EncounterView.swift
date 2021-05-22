@@ -15,13 +15,12 @@ struct EncounterView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @Environment(\.presentationMode) var presentation
-
+    
     @State var isShowingAddEnemy = false
-        
-    @State var selectedFighter: Fighter?
+    
     
     // MARK: - Private properties
-        
+    
     @State private var showingClearAlert = false
     
     @FetchRequest(
@@ -32,6 +31,10 @@ struct EncounterView: View {
         ],
         animation: .default)
     private var fighters: FetchedResults<Fighter>
+    
+    @State private var refreshing = false
+    
+    private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
     
     // MARK: - UI
     
@@ -46,9 +49,13 @@ struct EncounterView: View {
                             HeroCell(hero: fighter)
                         }
                     }
+                    .onReceive(self.didSave) { _ in
+                        self.refreshing.toggle()
+                    }
                 }
                 .onDelete(perform: deleteItems)
-            }.toolbar {
+            }
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         isShowingAddEnemy.toggle()
@@ -62,24 +69,56 @@ struct EncounterView: View {
                     }) {
                         HStack {
                             Image(systemName: "trash")
-                            Text("Clear")
+                            Text(NSLocalizedString("Clear", comment: ""))
                         }
-                    }.disabled(fighters.isEmpty)
+                    }
+                    .disabled(fighters.isEmpty)
                 }
-            }.sheet(isPresented: $isShowingAddEnemy, content: {
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: resolveRound) {
+                        HStack {
+                            Image(systemName: "refresh")
+                            Text(NSLocalizedString("New round", comment: ""))
+                        }
+                    }
+                    .disabled(fighters.isEmpty)
+                }
+            }
+            .sheet(isPresented: $isShowingAddEnemy, content: {
                 AddFighterView(isShowingAddFighter: $isShowingAddEnemy)
-            }).alert(isPresented: $showingClearAlert) {
+            })
+            .alert(isPresented: $showingClearAlert) {
                 Alert(
                     title: Text(NSLocalizedString("Warning", comment: "")),
                     message: Text(NSLocalizedString("Do you want to clear the encounter?", comment: "")),
                     primaryButton: .destructive(Text(NSLocalizedString("Delete", comment: "")), action: clearList),
                     secondaryButton: .default(Text(NSLocalizedString("Cancel", comment: "")))
                 )
-            }.navigationTitle(NSLocalizedString("Encounter ⚔️", comment: ""))
+            }
+            .navigationTitle(NSLocalizedString("Encounter ⚔️", comment: ""))
         }
     }
     
     // MARK: - Private methods
+    
+    private func resolveRound() {
+        
+        fighters.forEach { fighter in
+            fighter.fighterStatesArray.forEach { fighterState in
+                if fighterState.roundsLeft == 1 {
+                    viewContext.delete(fighterState)
+                } else {
+                    fighterState.roundsLeft = fighterState.roundsLeft - 1
+                }
+            }
+        }
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error in DB")
+        }
+    }
     
     private func clearList() {
         fighters.forEach { viewContext.delete($0) }

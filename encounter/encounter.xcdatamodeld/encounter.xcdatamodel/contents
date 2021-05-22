@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Encounter" representedClassName="Encounter" syncable="YES" codeGenerationType="class">
-        <attribute name="turns" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rounds" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="fighters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Fighter" inverseName="encounter" inverseEntity="Fighter"/>
     </entity>
     <entity name="Fighter" representedClassName="Fighter" syncable="YES" codeGenerationType="class">
@@ -15,8 +15,8 @@
         <relationship name="states" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FighterState" inverseName="fighter" inverseEntity="FighterState"/>
     </entity>
     <entity name="FighterState" representedClassName="FighterState" syncable="YES" codeGenerationType="class">
+        <attribute name="roundsLeft" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="stateType" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="turnsLeft" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="fighter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fighter" inverseName="states" inverseEntity="Fighter"/>
     </entity>
     <elements>
