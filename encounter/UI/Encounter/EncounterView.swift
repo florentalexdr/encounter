@@ -30,12 +30,9 @@ struct EncounterView: View {
             NSSortDescriptor(keyPath: \Fighter.name, ascending: true),
         ],
         animation: .default)
+    
     private var fighters: FetchedResults<Fighter>
-    
-    @State private var refreshing = false
-    
-    private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-    
+            
     // MARK: - UI
     
     var body: some View {
@@ -48,9 +45,6 @@ struct EncounterView: View {
                         } else {
                             HeroCell(hero: fighter)
                         }
-                    }
-                    .onReceive(self.didSave) { _ in
-                        self.refreshing.toggle()
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -77,7 +71,7 @@ struct EncounterView: View {
                 ToolbarItem(placement: .bottomBar) {
                     Button(action: resolveRound) {
                         HStack {
-                            Image(systemName: "refresh")
+                            Image(systemName: "goforward")
                             Text(NSLocalizedString("New round", comment: ""))
                         }
                     }
@@ -105,7 +99,7 @@ struct EncounterView: View {
         
         fighters.forEach { fighter in
             fighter.fighterStatesArray.forEach { fighterState in
-                if fighterState.roundsLeft == 1 {
+                if fighterState.roundsLeft == 0 {
                     viewContext.delete(fighterState)
                 } else {
                     fighterState.roundsLeft = fighterState.roundsLeft - 1

@@ -11,7 +11,7 @@ struct FighterStateView: View {
     
     // MARK: - Public Properties
     
-    var fighterState: FighterState
+    @ObservedObject var fighterState: FighterState
     
     // MARK: - UI
     
