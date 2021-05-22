@@ -55,7 +55,7 @@ struct AddFighterStateView: View {
     
     @Binding var isShowingAddFighterState: Bool
     
-    @Binding var fighter: Fighter?
+    @ObservedObject var fighter: Fighter
 
     // MARK: - Private Properties
     
@@ -138,7 +138,7 @@ struct AddFighterStateView: View {
         fighterState.turnsLeft = Int64(turnsLeft)
         fighterState.stateType = self.fighterState.rawValue
         
-        fighter?.addToStates(fighterState)
+        fighter.addToStates(fighterState)
         
         PersistenceController.shared.save()
         return true
