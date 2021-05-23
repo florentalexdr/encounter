@@ -135,7 +135,7 @@ struct AddFighterStateView: View {
         }
         
         let fighterState = FighterState(context: managedObjectContext)
-        fighterState.roundsLeft = Int64(turnsLeft)
+        fighterState.turnsLeft = Int64(turnsLeft)
         fighterState.stateType = self.fighterState.rawValue
         
         fighter.addToStates(fighterState)

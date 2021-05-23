@@ -20,7 +20,7 @@ struct FighterStateView: View {
             Text(FighterStateType(rawValue: fighterState.stateType)?.localizedString ?? "")
                 .foregroundColor(.primary)
             Spacer()
-            Text("\(fighterState.roundsLeft)" + " " + NSLocalizedString("rounds left", comment: ""))
+            Text("\(fighterState.turnsLeft)" + " " + NSLocalizedString("turns left", comment: ""))
                 .foregroundColor(.secondary)
         }
     }

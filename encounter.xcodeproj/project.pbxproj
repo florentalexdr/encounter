@@ -10,7 +10,7 @@
 		4A6F77B526592BEA00549F0D /* AddFighterStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F77B426592BEA00549F0D /* AddFighterStateView.swift */; };
 		4A6F77B7265939A900549F0D /* EditFighterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F77B6265939A900549F0D /* EditFighterView.swift */; };
 		4A6F77B92659597B00549F0D /* FighterStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F77B82659597B00549F0D /* FighterStateView.swift */; };
-		4AE92E5E264A9F9200561AC6 /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE92E5D264A9F9200561AC6 /* HeroCell.swift */; };
+		4A6F77BB265A4E5F00549F0D /* ActiveTurnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F77BA265A4E5F00549F0D /* ActiveTurnView.swift */; };
 		4AE92E61264AB18F00561AC6 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE92E60264AB18F00561AC6 /* AddButton.swift */; };
 		4AEB6863264BD66600CBE950 /* HealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB6862264BD66600CBE950 /* HealthBar.swift */; };
 		4AFB0D3C26491D4900D30617 /* encounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D3B26491D4900D30617 /* encounterApp.swift */; };
@@ -21,7 +21,7 @@
 		4AFB0D4826491D4A00D30617 /* encounter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D4626491D4A00D30617 /* encounter.xcdatamodeld */; };
 		4AFB0D5326491D4A00D30617 /* encounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D5226491D4A00D30617 /* encounterTests.swift */; };
 		4AFB0D5E26491D4A00D30617 /* encounterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D5D26491D4A00D30617 /* encounterUITests.swift */; };
-		4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */; };
+		4AFB0D6C264975AB00D30617 /* FighterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D6B264975AB00D30617 /* FighterCell.swift */; };
 		4AFB0D7426497F9E00D30617 /* AddFighterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB0D7326497F9E00D30617 /* AddFighterView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +46,7 @@
 		4A6F77B426592BEA00549F0D /* AddFighterStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFighterStateView.swift; sourceTree = "<group>"; };
 		4A6F77B6265939A900549F0D /* EditFighterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFighterView.swift; sourceTree = "<group>"; };
 		4A6F77B82659597B00549F0D /* FighterStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FighterStateView.swift; sourceTree = "<group>"; };
-		4AE92E5D264A9F9200561AC6 /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
+		4A6F77BA265A4E5F00549F0D /* ActiveTurnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveTurnView.swift; sourceTree = "<group>"; };
 		4AE92E60264AB18F00561AC6 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		4AEB6862264BD66600CBE950 /* HealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBar.swift; sourceTree = "<group>"; };
 		4AFB0D3826491D4900D30617 /* encounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = encounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +63,7 @@
 		4AFB0D5926491D4A00D30617 /* encounterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = encounterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFB0D5D26491D4A00D30617 /* encounterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = encounterUITests.swift; sourceTree = "<group>"; };
 		4AFB0D5F26491D4A00D30617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnnemyCell.swift; sourceTree = "<group>"; };
+		4AFB0D6B264975AB00D30617 /* FighterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FighterCell.swift; sourceTree = "<group>"; };
 		4AFB0D7326497F9E00D30617 /* AddFighterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFighterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				4A6F77B82659597B00549F0D /* FighterStateView.swift */,
+				4A6F77BA265A4E5F00549F0D /* ActiveTurnView.swift */,
 				4AE92E60264AB18F00561AC6 /* AddButton.swift */,
 				4AEB6862264BD66600CBE950 /* HealthBar.swift */,
 			);
@@ -167,8 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				4AFB0D3D26491D4900D30617 /* EncounterView.swift */,
-				4AFB0D6B264975AB00D30617 /* EnnemyCell.swift */,
-				4AE92E5D264A9F9200561AC6 /* HeroCell.swift */,
+				4AFB0D6B264975AB00D30617 /* FighterCell.swift */,
 			);
 			path = Encounter;
 			sourceTree = "<group>";
@@ -333,14 +333,14 @@
 				4AEB6863264BD66600CBE950 /* HealthBar.swift in Sources */,
 				4AFB0D4526491D4A00D30617 /* Persistence.swift in Sources */,
 				4AFB0D4826491D4A00D30617 /* encounter.xcdatamodeld in Sources */,
-				4AFB0D6C264975AB00D30617 /* EnnemyCell.swift in Sources */,
+				4AFB0D6C264975AB00D30617 /* FighterCell.swift in Sources */,
 				4AFB0D3E26491D4900D30617 /* EncounterView.swift in Sources */,
 				4A6F77B92659597B00549F0D /* FighterStateView.swift in Sources */,
-				4AE92E5E264A9F9200561AC6 /* HeroCell.swift in Sources */,
 				4AFB0D3C26491D4900D30617 /* encounterApp.swift in Sources */,
 				4A6F77B7265939A900549F0D /* EditFighterView.swift in Sources */,
 				4A6F77B526592BEA00549F0D /* AddFighterStateView.swift in Sources */,
 				4AE92E61264AB18F00561AC6 /* AddButton.swift in Sources */,
+				4A6F77BB265A4E5F00549F0D /* ActiveTurnView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

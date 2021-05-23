@@ -40,11 +40,7 @@ struct EncounterView: View {
             List {
                 ForEach(fighters) { fighter in
                     NavigationLink(destination: EditFighterView(fighter: fighter)) {
-                        if !fighter.isHero {
-                            EnnemyCell(enemy: fighter)
-                        } else {
-                            HeroCell(hero: fighter)
-                        }
+                        FighterCell(fighter: fighter)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -69,10 +65,10 @@ struct EncounterView: View {
                     .disabled(fighters.isEmpty)
                 }
                 ToolbarItem(placement: .bottomBar) {
-                    Button(action: resolveRound) {
+                    Button(action: resolveTurn) {
                         HStack {
-                            Image(systemName: "goforward")
-                            Text(NSLocalizedString("New round", comment: ""))
+                            Image(systemName: "arrow.forward")
+                            Text(NSLocalizedString("Next turn", comment: ""))
                         }
                     }
                     .disabled(fighters.isEmpty)
@@ -95,22 +91,44 @@ struct EncounterView: View {
     
     // MARK: - Private methods
     
-    private func resolveRound() {
+    private func resolveTurn() {
         
-        fighters.forEach { fighter in
-            fighter.fighterStatesArray.forEach { fighterState in
-                if fighterState.roundsLeft == 0 {
-                    viewContext.delete(fighterState)
-                } else {
-                    fighterState.roundsLeft = fighterState.roundsLeft - 1
-                }
+        guard let activePlayerIndex = fighters.firstIndex(where: { $0.isCurrentTurn }) else {
+            
+            fighters[0].isCurrentTurn = true
+            
+            do {
+                try viewContext.save()
+            } catch {
+                print("Error in DB")
             }
+            
+            return
         }
+        
+        var newActivePlayerIndex = 0
+        if activePlayerIndex < fighters.count - 1 {
+            newActivePlayerIndex = activePlayerIndex + 1
+        }
+        
+        fighters[activePlayerIndex].isCurrentTurn = false
+        decreaseStates(of: fighters[activePlayerIndex])
+        fighters[newActivePlayerIndex].isCurrentTurn = true
         
         do {
             try viewContext.save()
         } catch {
             print("Error in DB")
+        }
+    }
+    
+    private func decreaseStates(of fighter: Fighter) {
+        fighter.fighterStatesArray.forEach { state in
+            if state.turnsLeft <= 1 {
+                viewContext.delete(state)
+            } else {
+                state.turnsLeft = state.turnsLeft - 1
+            }
         }
     }
     
