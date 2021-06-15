@@ -13,9 +13,7 @@ struct FighterCell: View {
     
     var body: some View {
         HStack {
-            if fighter.isCurrentTurn {
-                ActiveTurnView()
-            }
+            ActiveTurnView(fighter: fighter)
             VStack {
                 HStack {
                     HealthBar(barColor: fighter.isHero ? .green : .red, maximumHealthPoints: Int(fighter.healthPoints), currentHealthPoints: Int(fighter.currentHealthPoints))
@@ -43,6 +41,7 @@ struct FighterCell: View {
                     }
                 }
             }
+            .animation(.default)
         }
     }
 }

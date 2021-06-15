@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ActiveTurnView: View {
+    
+    @ObservedObject var fighter: Fighter
+
     var body: some View {
         Circle()
-            .frame(width: 8, height: 8)
             .foregroundColor(.purple)
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+            .frame(width: fighter.isCurrentTurn ? 8 : 0, height: fighter.isCurrentTurn ? 8 : 0)
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: fighter.isCurrentTurn ? 8 : 0))
+            .animation(.default)
     }
 }
 
-struct ActiveTurnView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActiveTurnView()
-    }
-}
+
