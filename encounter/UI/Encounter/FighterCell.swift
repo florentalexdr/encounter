@@ -27,6 +27,7 @@ struct FighterCell: View {
                     
                     Text(fighter.name ?? "")
                         .foregroundColor(.primary)
+                        .layoutPriority(1)
                     
                     Text("(Init: \(fighter.initiative))")
                         .foregroundColor(.secondary)
@@ -35,9 +36,11 @@ struct FighterCell: View {
 
                         TextField("0", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
                             .multilineTextAlignment(.trailing)
+
                         
                         Text("/ \(fighter.healthPoints) HP")
                             .lineLimit(1)
+
                     }
 
                 }
