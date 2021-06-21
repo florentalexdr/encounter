@@ -37,6 +37,9 @@ struct EditFighterView: View {
     var body: some View {
         VStack {
             Form {
+                Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
+                    TextField("100", value: $fighter.healthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                }
                 Section(header: Text(NSLocalizedString("Current HP", comment: ""))) {
                     TextField("100", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
                 }

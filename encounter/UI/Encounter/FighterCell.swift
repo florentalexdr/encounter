@@ -16,7 +16,12 @@ struct FighterCell: View {
             ActiveTurnView(fighter: fighter)
             VStack {
                 HStack {
-                    HealthBar(barColor: fighter.isHero ? .green : .red, maximumHealthPoints: Int(fighter.healthPoints), currentHealthPoints: Int(fighter.currentHealthPoints))
+                    
+                    HealthBar(
+                        barColor: fighter.isHero ? .green : .red,
+                        maximumHealthPoints: fighter.healthPoints > 0 ? Int(fighter.healthPoints) : nil,
+                        currentHealthPoints: fighter.healthPoints > 0 ? Int(fighter.currentHealthPoints) : nil
+                    )
                         .frame(width: 3)
                         .cornerRadius(2)
                     
@@ -26,11 +31,14 @@ struct FighterCell: View {
                     Text("(Init: \(fighter.initiative))")
                         .foregroundColor(.secondary)
                     
-                    TextField("0", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
-                        .multilineTextAlignment(.trailing)
-                    
-                    Text("/ \(fighter.healthPoints) HP")
-                        .lineLimit(1)
+                    if fighter.healthPoints > 0 {
+
+                        TextField("0", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                            .multilineTextAlignment(.trailing)
+                        
+                        Text("/ \(fighter.healthPoints) HP")
+                            .lineLimit(1)
+                    }
 
                 }
                 ForEach(fighter.fighterStatesArray) { state in

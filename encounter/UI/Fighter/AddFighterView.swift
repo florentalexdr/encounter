@@ -170,7 +170,6 @@ struct AddFighterView: View {
     
     private func addHeroToDB() -> Bool {
         guard name.isEmpty == false,
-              let healthPoints = self.healthPoints,
               let initiative = self.initiative else {
             return false
         }
@@ -178,8 +177,10 @@ struct AddFighterView: View {
         let hero = Fighter(context: managedObjectContext)
         hero.isHero = true
         hero.name = name
-        hero.healthPoints = Int64(healthPoints)
-        hero.currentHealthPoints = Int64(healthPoints)
+        if let healthPoints = self.healthPoints {
+            hero.healthPoints = Int64(healthPoints)
+            hero.currentHealthPoints = Int64(healthPoints)
+        }
         hero.initiative = Int64(initiative)
         hero.index = 0
         
