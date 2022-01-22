@@ -33,10 +33,12 @@ struct FighterCell: View {
                         .foregroundColor(.secondary)
                     
                     if fighter.healthPoints > 0 {
-
-                        TextField("0", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                        
+                        TextField("0", value:   $fighter.currentHealthPoints, format: .number)
+                            .onSubmit {
+                                PersistenceController.shared.save()
+                            }
                             .multilineTextAlignment(.trailing)
-
                         
                         Text("/ \(fighter.healthPoints) HP")
                             .lineLimit(1)

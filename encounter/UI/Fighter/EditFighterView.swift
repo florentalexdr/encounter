@@ -38,10 +38,16 @@ struct EditFighterView: View {
         VStack {
             Form {
                 Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
-                    TextField("100", value: $fighter.healthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                    TextField("100", value:  $fighter.healthPoints, format: .number)
+                        .onSubmit {
+                            PersistenceController.shared.save()
+                        }
                 }
                 Section(header: Text(NSLocalizedString("Current HP", comment: ""))) {
-                    TextField("100", value: $fighter.currentHealthPoints, formatter: NumberFormatter(), onCommit: { PersistenceController.shared.save() })
+                    TextField("100", value:  $fighter.currentHealthPoints, format: .number)
+                        .onSubmit {
+                            PersistenceController.shared.save()
+                        }
                 }
                 Section(header: Text(NSLocalizedString("States", comment: ""))) {
                     List {
