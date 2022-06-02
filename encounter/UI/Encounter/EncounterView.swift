@@ -28,10 +28,7 @@ struct EncounterView: View {
             NSSortDescriptor(keyPath: \Fighter.initiative, ascending: false),
             NSSortDescriptor(keyPath: \Fighter.index, ascending: true),
             NSSortDescriptor(keyPath: \Fighter.name, ascending: true),
-        ],
-        animation: .default)
-    
-    private var fighters: FetchedResults<Fighter>
+        ]) var fighters: FetchedResults<Fighter>
             
     // MARK: - UI
     
@@ -39,7 +36,15 @@ struct EncounterView: View {
         NavigationView {
             List {
                 ForEach(fighters) { fighter in
-                    NavigationLink(destination: EditFighterView(fighter: fighter)) {
+                    NavigationLink(destination: EditFighterView(viewModel:
+                            .init(
+                                fighter: fighter,
+                                onSave: { edit in
+                                    fighter.currentHealthPoints = Int64(edit.currentHealthPoints)
+                                    fighter.healthPoints = Int64(edit.healthPoints)
+                                    PersistenceController.shared.save()
+                                }
+                            ))) {
                         FighterCell(fighter: fighter)
                     }
                 }
