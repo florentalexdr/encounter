@@ -9,29 +9,35 @@ import Foundation
 import SwiftUI
 
 struct AddFighterView: View {
-    
+
     // MARK: - Public Properties
-    
+
     @Environment(\.managedObjectContext) var managedObjectContext
-    
+
     @Binding var isShowingAddFighter: Bool
-    
+
     // MARK: - Private Properties
-    
+
+    enum FocusableField: Hashable {
+        case name, enemyType, numberOfEnemies, healthPoints, initiative
+    }
+
+    @FocusState private var focusedField: FocusableField?
+
     @State private var name: String = ""
-    
+
     @State private var enemyType: String = ""
-    
+
     @State private var numberOfEnemies: Int?
-    
+
     @State private var healthPoints: Int?
-    
+
     @State private var initiative: Int?
-    
+
     @State private var showingAlert = false
-    
+
     @State private var isHero: Bool = true
-    
+
     private var numberOfEnemiesProxy: Binding<String> {
         Binding<String>(
             get: {
@@ -47,7 +53,7 @@ struct AddFighterView: View {
             }
         )
     }
-    
+
     private var initiativeProxy: Binding<String> {
         Binding<String>(
             get: {
@@ -63,7 +69,7 @@ struct AddFighterView: View {
             }
         )
     }
-    
+
     private var healthPointsProxy: Binding<String> {
         Binding<String>(
             get: {
@@ -79,10 +85,10 @@ struct AddFighterView: View {
             }
         )
     }
-    
+
     // MARK: - UI
-    
-    
+
+
     var body: some View {
         NavigationView {
             VStack {
@@ -101,79 +107,102 @@ struct AddFighterView: View {
                     if isHero {
                         Section(header: Text(NSLocalizedString("Name", comment: ""))) {
                             TextField("Ogion", text: $name)
+                                .focused($focusedField, equals: .name)
+                                .onSubmit {
+                                    focusedField = .initiative
+                                }
                         }
                         Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
                             TextField("17", text: initiativeProxy)
+                                .focused($focusedField, equals: .initiative)
+                                .onSubmit {
+                                    focusedField = .healthPoints
+                                }
                         }
                         Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
                             TextField("100", text: healthPointsProxy)
+                                .focused($focusedField, equals: .healthPoints)
                         }
                     } else {
                         Section(header: Text(NSLocalizedString("Enemy type", comment: ""))) {
                             TextField("Gnome", text: $enemyType)
+                                .focused($focusedField, equals: .enemyType)
+                                .onSubmit {
+                                    focusedField = .numberOfEnemies
+                                }
                         }
                         Section(header: Text(NSLocalizedString("Number of enemies", comment: ""))) {
                             TextField("5", text: numberOfEnemiesProxy)
+                                .focused($focusedField, equals: .numberOfEnemies)
+                                .onSubmit {
+                                    focusedField = .initiative
+                                }
                         }
                         Section(header: Text(NSLocalizedString("Initiative", comment: ""))) {
                             TextField("17", text: initiativeProxy)
+                                .focused($focusedField, equals: .initiative)
+                                .onSubmit {
+                                    focusedField = .healthPoints
+                                }
                         }
                         Section(header: Text(NSLocalizedString("Maximum HP", comment: ""))) {
                             TextField("100", text: healthPointsProxy)
+                                .focused($focusedField, equals: .healthPoints)
                         }
                     }
-                }}.navigationTitle(
-                    NSLocalizedString("Add fighter", comment: "")
-                ).toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            
-                            guard saveToDB() else {
-                                showingAlert = true
-                                return
-                            }
-                            isShowingAddFighter.toggle()
-                        }) {
-                            AddButton()
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(NSLocalizedString("Cancel", comment: "")) {
-                            isShowingAddFighter.toggle()
-                        }
-                    }
-                }.alert(isPresented: $showingAlert) {
-                    Alert(
-                        title: Text(NSLocalizedString("Error", comment: "")),
-                        message: Text(NSLocalizedString("Fill all fields before adding.", comment: "")),
-                        dismissButton: .default(Text(NSLocalizedString("Got it!", comment: "")))
-                    )
                 }
+            }.navigationTitle(
+                NSLocalizedString("Add fighter", comment: "")
+            ).toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+
+                        guard saveToDB() else {
+                            showingAlert = true
+                            return
+                        }
+                        isShowingAddFighter.toggle()
+                    }) {
+                        AddButton()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
+                        isShowingAddFighter.toggle()
+                    }
+                }
+            }.alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text(NSLocalizedString("Error", comment: "")),
+                    message: Text(NSLocalizedString("Fill all fields before adding.", comment: "")),
+                    dismissButton: .default(Text(NSLocalizedString("Got it!", comment: "")))
+                )
+            }
         }
-        
+
     }
-    
+
     // MARK : - Private Methods
-    
+
     private func saveToDB() -> Bool {
-        
-        var result: Bool = false 
+
+        var result: Bool = false
         if isHero {
             result = addHeroToDB()
         } else {
             result = addEnemiesToDB()
         }
-        
+
         PersistenceController.shared.save()
         return result
     }
-    
+
     private func addHeroToDB() -> Bool {
         guard name.isEmpty == false,
               let initiative = self.initiative else {
             return false
         }
-        
+
         let hero = Fighter(context: managedObjectContext)
         hero.isHero = true
         hero.name = name
@@ -183,10 +212,10 @@ struct AddFighterView: View {
         }
         hero.initiative = Int64(initiative)
         hero.index = 0
-        
+
         return true
     }
-    
+
     private func addEnemiesToDB() -> Bool {
         guard enemyType.isEmpty == false,
               let numberOfEnemies = self.numberOfEnemies,
@@ -194,7 +223,7 @@ struct AddFighterView: View {
               let healthPoints = self.healthPoints else {
             return false
         }
-                        
+
         let startIndex = PersistenceController.shared.lastIndexForEnemy(type: enemyType) + 1
         let endIndex = startIndex + numberOfEnemies - 1
         for index in startIndex...endIndex {
@@ -206,8 +235,8 @@ struct AddFighterView: View {
             enemy.name = enemyType + " " + "\(index)"
             enemy.isHero = false
         }
-        
+
         return true
     }
-    
+
 }
